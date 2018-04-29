@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="@color/colorPrimary"
     tools:context="com.example.tempest.iyteclubsy.ClubDetailsActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -36,6 +37,7 @@
         android:layout_marginTop="32dp"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
@@ -88,6 +90,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:text="Subscribe"
+        android:background="@color/colorAccent"
+        android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clubDesc" />

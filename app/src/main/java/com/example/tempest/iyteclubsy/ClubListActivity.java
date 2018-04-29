@@ -138,7 +138,7 @@ public class ClubListActivity extends AppCompatActivity implements AdapterView.O
 
         listview = (ListView) findViewById(R.id.listView);
         listview.setOnItemClickListener(this);
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
+        adapter = new ArrayAdapter<String>(this, R.layout.list_white_text, R.id.list_content, listItems);
         listview.setAdapter(adapter);
 
 
