@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "367236792545",
+    "firebase_url": "https://iyte-clubsy.firebaseio.com",
+    "project_id": "iyte-clubsy",
+    "storage_bucket": "iyte-clubsy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:367236792545:android:9200ce22094c2fe9",
+        "android_client_info": {
+          "package_name": "com.example.tempest.iyteclubsy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "367236792545-o57npaf2ju8vu8u27ti9h4mua3bde4mv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tempest.iyteclubsy",
+            "certificate_hash": "09f4167640270f05d97fe660f636137e1710bee4"
+          }
+        },
+        {
+          "client_id": "367236792545-5lk62ab709p78vsdpgu7q3fl2opbhulg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tempest.iyteclubsy",
+            "certificate_hash": "253840fec890a8f2bf98f31007b5db6e2e7b2047"
+          }
+        },
+        {
+          "client_id": "367236792545-l4bcj8hllc8s65lb0bedsle39f6kqvg5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCe8VcCVEx7yUKc6mDO-1Va9G3Xb-FrIx8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "367236792545-l4bcj8hllc8s65lb0bedsle39f6kqvg5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
