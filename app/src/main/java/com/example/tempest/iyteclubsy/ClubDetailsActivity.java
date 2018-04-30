@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -21,8 +20,8 @@ import com.google.firebase.database.*;
 
 public class ClubDetailsActivity extends AppCompatActivity {
 
-    private EditText nameText, descText;
-    private TextView textView;
+    private TextView clubName;
+    private TextView clubDesc;
     private Button subButton;
     private ProgressBar progressBar;
 
@@ -43,20 +42,17 @@ public class ClubDetailsActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
-            case R.id.menuProfile:
-                startActivity(new Intent(ClubDetailsActivity.this, Main2Activity.class));
+            case R.id.menuIYTEClubsy:
+                startActivity(new Intent(ClubDetailsActivity.this, MainActivity.class));
                 finish();
                 break;
 
             case R.id.menuClubList:
-                startActivity(new Intent(ClubDetailsActivity.this, ClubListActivity.class));
                 finish();
                 break;
 
             case R.id.menuLogout:
                 auth.signOut();
-                startActivity(new Intent(ClubDetailsActivity.this, LoginActivity.class));
-                finish();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -74,8 +70,8 @@ public class ClubDetailsActivity extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
 
-        descText = (EditText) findViewById(R.id.clubDesc);
-        textView = (TextView) findViewById(R.id.clubName);
+        clubDesc = (TextView) findViewById(R.id.clubDesc);
+        clubName = (TextView) findViewById(R.id.clubName);
         subButton = (Button) findViewById(R.id.subButton);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -110,11 +106,15 @@ public class ClubDetailsActivity extends AppCompatActivity {
                 counter++;
                 progressBar.setVisibility(View.VISIBLE);
                 if(counter == position){
-                    //clubs.add(dataSnapshot.getValue(Club.class));
+//                    clubs.add(dataSnapshot.getValue(Club.class));
                     System.out.println(dataSnapshot.getKey());
-                    //descText.setText(dataSnapshot.child("desc").getValue().toString());
-                    //nameText.setText(dataSnapshot.child("name").getValue().toString());
-                    textView.setText(dataSnapshot.child("name").getValue().toString());
+//                    descText.setText(dataSnapshot.child("desc").getValue().toString());
+//                    nameText.setText(dataSnapshot.child("name").getValue().toString());
+//                    textView.setText(dataSnapshot.child("name").getValue().toString());
+                    String name = dataSnapshot.getKey().substring(0, 1).toUpperCase() + dataSnapshot.getKey().substring(1);
+                    String desc = dataSnapshot.child("description").getValue().toString();
+                    clubName.setText(name);
+                    clubDesc.setText(desc);
                 }
                 progressBar.setVisibility(View.GONE);
             }

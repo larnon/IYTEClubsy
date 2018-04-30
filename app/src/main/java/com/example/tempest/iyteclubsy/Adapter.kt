@@ -18,8 +18,8 @@ class Adapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
     }
 
     override fun getPageTitle(position: Int): CharSequence = when (position) {
-        0 -> "Tab 1 Item"
-        1 -> "Tab 2 Item"
+        0 -> "Notifications"
+        1 -> "Events"
         else -> ""
     }
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/colorPrimary"
+    android:background="@color/white"
     tools:context="com.example.tempest.iyteclubsy.ClubDetailsActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -36,12 +36,30 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:text="TextView"
+        android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:textColor="@android:color/white"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/clubDesc"
+        android:layout_width="0dp"
+        android:layout_height="128dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:gravity="center"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Tooltip"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clubName" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -56,18 +74,6 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 
-    <EditText
-        android:id="@+id/clubDesc"
-        android:layout_width="0dp"
-        android:layout_height="128dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clubName" />
 
     <ImageView
         android:id="@+id/imageView"

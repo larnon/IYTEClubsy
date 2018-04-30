@@ -25,16 +25,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ProfileActivity"
             android:label="Profile"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Main2Activity"
-            android:label="Profile"
+            android:name=".MainActivity"
+            android:label="IYTE Clubsy"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SignupActivity"
-            android:label="SignupActivity"
+            android:label="Signup Activity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ResetPasswordActivity"

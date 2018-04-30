@@ -55,8 +55,7 @@ public class ClubListActivity extends AppCompatActivity implements AdapterView.O
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
-            case R.id.menuProfile:
-                startActivity(new Intent(ClubListActivity.this, Main2Activity.class));
+            case R.id.menuIYTEClubsy:
                 finish();
                 break;
 
@@ -65,8 +64,6 @@ public class ClubListActivity extends AppCompatActivity implements AdapterView.O
 
             case R.id.menuLogout:
                 auth.signOut();
-                startActivity(new Intent(ClubListActivity.this, LoginActivity.class));
-                finish();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -109,8 +106,9 @@ public class ClubListActivity extends AppCompatActivity implements AdapterView.O
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 progressBar.setVisibility(View.VISIBLE);
-                adapter.add(dataSnapshot.getKey().toString());
-                clubs.add(dataSnapshot.getValue(Club.class));
+                String clubName = dataSnapshot.getKey().substring(0, 1).toUpperCase() + dataSnapshot.getKey().substring(1);
+                adapter.add(clubName);
+//                clubs.add(dataSnapshot.getValue(Club.class));
                 progressBar.setVisibility(View.GONE);
             }
 
@@ -150,7 +148,6 @@ public class ClubListActivity extends AppCompatActivity implements AdapterView.O
         System.out.println(position);
         intent.putExtra("id", id);
         startActivity(intent);
-        finish();
     }
 
 

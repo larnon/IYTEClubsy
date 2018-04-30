@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#690000</color>
-    <color name="colorPrimaryDark">#990000</color>
+    <color name="colorPrimaryDark">#690000</color>
+    <color name="colorPrimary">#990000</color>
+    <color name="colorSecondary">#c30000</color>
     <color name="colorAccent">#b5b5b5</color>
 
     <color name="bg_login">#26ae90</color>
     <color name="bg_register">#2e3237</color>
     <color name="bg_main">#428bca</color>
     <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
     <color name="input_login">#222222</color>
     <color name="input_login_hint">#999999</color>
     <color name="input_register">#888888</color>

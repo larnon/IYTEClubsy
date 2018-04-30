@@ -2,6 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/menuIYTEClubsy"
+        android:title="IYTE Clubsy" />
+
+    <item
         android:id="@+id/menuProfile"
         android:title="Profile" />
 

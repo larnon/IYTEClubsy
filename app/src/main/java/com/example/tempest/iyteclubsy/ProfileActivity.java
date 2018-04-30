@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.transition.Fade;
-import android.transition.Transition;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,10 +19,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.*;
 import com.google.firebase.storage.*;
 
-public class MainActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
 
     private Button btnChangePassword;
 
@@ -46,11 +43,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
+            case R.id.menuIYTEClubsy:
+                finish();
+                break;
+
             case R.id.menuProfile:
                 break;
 
             case R.id.menuClubList:
-                startActivity(new Intent(MainActivity.this, ClubListActivity.class));
+                startActivity(new Intent(ProfileActivity.this, ClubListActivity.class));
                 finish();
                 break;
 
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_profile);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Profile");
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 if (user == null) {
                     // user auth state is changed - user is null
                     // launch login activity
-                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
                     finish();
                 }
             }
@@ -130,11 +131,11 @@ public class MainActivity extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
-                                            Toast.makeText(MainActivity.this, "Password is updated, sign in with new password!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(ProfileActivity.this, "Password is updated, sign in with new password!", Toast.LENGTH_SHORT).show();
                                             auth.signOut();
                                             progressBar.setVisibility(View.GONE);
                                         } else {
-                                            Toast.makeText(MainActivity.this, "Failed to update password!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(ProfileActivity.this, "Failed to update password!", Toast.LENGTH_SHORT).show();
                                             progressBar.setVisibility(View.GONE);
                                         }
                                     }
@@ -142,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    Toast.makeText(MainActivity.this, "Enter new password!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileActivity.this, "Enter new password!", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
                 }
             }

@@ -12,16 +12,12 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 
 
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 
 
-
-class Main2Activity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private var authListener: FirebaseAuth.AuthStateListener? = null
     private var auth: FirebaseAuth? = null
@@ -35,12 +31,15 @@ class Main2Activity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.menuIYTEClubsy -> {
+            }
+
             R.id.menuProfile -> {
+                startActivity(Intent(this@MainActivity, ProfileActivity::class.java))
             }
 
             R.id.menuClubList -> {
-                startActivity(Intent(this@Main2Activity, ClubListActivity::class.java))
-                finish()
+                startActivity(Intent(this@MainActivity, ClubListActivity::class.java))
             }
 
             R.id.menuLogout -> auth!!.signOut()
@@ -50,7 +49,7 @@ class Main2Activity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main2)
+        setContentView(R.layout.activity_main)
 
 
         //get firebase auth instance
@@ -62,7 +61,7 @@ class Main2Activity : AppCompatActivity() {
 
         auth!!.addAuthStateListener {
             if(auth!!.currentUser == null){
-                startActivity(Intent(this@Main2Activity, LoginActivity::class.java))
+                startActivity(Intent(this@MainActivity, LoginActivity::class.java))
                 this.finish()
             }
         }
@@ -94,6 +93,6 @@ class Main2Activity : AppCompatActivity() {
     private fun initToolbar() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        supportActionBar!!.title = "Profile"
+        supportActionBar!!.title = "IYTE Clubsy"
     }
 }
