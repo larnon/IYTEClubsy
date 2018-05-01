@@ -3,7 +3,7 @@
     <color name="colorPrimaryDark">#690000</color>
     <color name="colorPrimary">#990000</color>
     <color name="colorSecondary">#c30000</color>
-    <color name="colorAccent">#b5b5b5</color>
+    <color name="colorAccent">#3b4148</color>
 
     <color name="bg_login">#26ae90</color>
     <color name="bg_register">#2e3237</color>

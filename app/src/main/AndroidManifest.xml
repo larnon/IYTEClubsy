@@ -21,6 +21,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -42,12 +43,17 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ClubListActivity"
-            android:label="Club List"
+            android:label="Clubs"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MyClubsActivity"
+            android:label="My Clubs"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ClubDetailsActivity"
             android:label="Club Details"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>

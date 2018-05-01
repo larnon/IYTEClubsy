@@ -14,6 +14,10 @@
         android:title="Club List" />
 
     <item
+        android:id="@+id/menuMyClubs"
+        android:title="My Clubs" />
+
+    <item
         android:id="@+id/menuLogout"
         android:title="Logout" />
 

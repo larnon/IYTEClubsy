@@ -55,6 +55,11 @@ public class ProfileActivity extends AppCompatActivity {
                 finish();
                 break;
 
+            case R.id.menuMyClubs:
+                startActivity(new Intent(ProfileActivity.this, MyClubsActivity.class));
+                finish();
+                break;
+
             case R.id.menuLogout:
                 auth.signOut();
                 break;

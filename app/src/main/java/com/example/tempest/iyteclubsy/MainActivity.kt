@@ -42,6 +42,10 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this@MainActivity, ClubListActivity::class.java))
             }
 
+            R.id.menuMyClubs -> {
+                startActivity(Intent(this@MainActivity, MyClubsActivity::class.java))
+            }
+
             R.id.menuLogout -> auth!!.signOut()
         }
         return super.onOptionsItemSelected(item)

@@ -14,6 +14,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import android.graphics.PorterDuff;
+
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -42,6 +44,8 @@ public class ClubListActivity extends AppCompatActivity implements AdapterView.O
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
 
+    private ArrayList<String> clubList = new ArrayList<String>();
+
 
 
 
@@ -62,6 +66,11 @@ public class ClubListActivity extends AppCompatActivity implements AdapterView.O
             case R.id.menuClubList:
                 break;
 
+            case R.id.menuMyClubs:
+                startActivity(new Intent(ClubListActivity.this, MyClubsActivity.class));
+                finish();
+                break;
+
             case R.id.menuLogout:
                 auth.signOut();
                 break;
@@ -77,10 +86,11 @@ public class ClubListActivity extends AppCompatActivity implements AdapterView.O
         setContentView(R.layout.activity_club_list);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.colorPrimary),PorterDuff.Mode.SRC_IN);
         progressBar.setVisibility(View.VISIBLE);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Club List");
+        toolbar.setTitle("Clubs");
         setSupportActionBar(toolbar);
 
         // Get Database reference
@@ -108,6 +118,7 @@ public class ClubListActivity extends AppCompatActivity implements AdapterView.O
                 progressBar.setVisibility(View.VISIBLE);
                 String clubName = dataSnapshot.getKey().substring(0, 1).toUpperCase() + dataSnapshot.getKey().substring(1);
                 adapter.add(clubName);
+                clubList.add(clubName);
 //                clubs.add(dataSnapshot.getValue(Club.class));
                 progressBar.setVisibility(View.GONE);
             }
@@ -147,6 +158,10 @@ public class ClubListActivity extends AppCompatActivity implements AdapterView.O
         intent.putExtra("position", position);
         System.out.println(position);
         intent.putExtra("id", id);
+
+        String clubName = clubList.get(position);
+        intent.putExtra("clubName", clubName);
+
         startActivity(intent);
     }
 

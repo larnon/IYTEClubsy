@@ -1,6 +1,7 @@
 package com.example.tempest.iyteclubsy;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,7 @@ public class ClubDetailsActivity extends AppCompatActivity {
     private TextView clubName;
     private TextView clubDesc;
     private Button subButton;
+    private Button unSubButton;
     private ProgressBar progressBar;
 
     private DatabaseReference mDatabase;
@@ -31,6 +33,8 @@ public class ClubDetailsActivity extends AppCompatActivity {
     private FirebaseAuth auth;
 
     private Intent intent;
+    private Bundle bundle;
+    private String clubNameToQuery;
 
     /* These two methods are for Toolbar */
     @Override
@@ -47,7 +51,18 @@ public class ClubDetailsActivity extends AppCompatActivity {
                 finish();
                 break;
 
+            case R.id.menuProfile:
+                startActivity(new Intent(ClubDetailsActivity.this, ProfileActivity.class));
+                finish();
+                break;
+
             case R.id.menuClubList:
+                startActivity(new Intent(ClubDetailsActivity.this, ClubListActivity.class));
+                finish();
+                break;
+
+            case R.id.menuMyClubs:
+                startActivity(new Intent(ClubDetailsActivity.this, MyClubsActivity.class));
                 finish();
                 break;
 
@@ -66,13 +81,19 @@ public class ClubDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_club_details);
 
         intent = getIntent();
+        bundle = intent.getExtras();
+        if(bundle != null){
+            clubNameToQuery = (String) bundle.get("clubName");
+        }
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
         progressBar.setVisibility(View.VISIBLE);
 
         clubDesc = (TextView) findViewById(R.id.clubDesc);
         clubName = (TextView) findViewById(R.id.clubName);
         subButton = (Button) findViewById(R.id.subButton);
+        unSubButton = (Button) findViewById(R.id.unSubButton);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Club Details");
@@ -99,23 +120,28 @@ public class ClubDetailsActivity extends AppCompatActivity {
 
         Query query = mDatabase.child("clubs");
         query.orderByKey().addChildEventListener(new ChildEventListener() {
-            int counter = -1;
-            int position = intent.getIntExtra("position", 0);
+//            int counter = -1;
+//            int position = intent.getIntExtra("position", 0);
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                counter++;
                 progressBar.setVisibility(View.VISIBLE);
-                if(counter == position){
-//                    clubs.add(dataSnapshot.getValue(Club.class));
-                    System.out.println(dataSnapshot.getKey());
-//                    descText.setText(dataSnapshot.child("desc").getValue().toString());
-//                    nameText.setText(dataSnapshot.child("name").getValue().toString());
-//                    textView.setText(dataSnapshot.child("name").getValue().toString());
+
+                if(dataSnapshot.getKey().equals(clubNameToQuery.toLowerCase())){
                     String name = dataSnapshot.getKey().substring(0, 1).toUpperCase() + dataSnapshot.getKey().substring(1);
                     String desc = dataSnapshot.child("description").getValue().toString();
                     clubName.setText(name);
                     clubDesc.setText(desc);
                 }
+
+//                counter++;
+//                if(counter == position){
+//                    System.out.println(dataSnapshot.getKey());
+//                    String name = dataSnapshot.getKey().substring(0, 1).toUpperCase() + dataSnapshot.getKey().substring(1);
+//                    String desc = dataSnapshot.child("description").getValue().toString();
+//                    clubName.setText(name);
+//                    clubDesc.setText(desc);
+//                }
+
                 progressBar.setVisibility(View.GONE);
             }
 
@@ -139,6 +165,59 @@ public class ClubDetailsActivity extends AppCompatActivity {
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
+
+
+
+
+
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        Query query2 = mDatabase.child("users").child(user.getUid()).child("clubs");
+        query2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                unSubButton.setVisibility(View.GONE);
+                subButton.setVisibility(View.GONE);
+                progressBar.setVisibility(View.VISIBLE);
+                if (dataSnapshot.hasChild(clubNameToQuery.toLowerCase())) {
+                    unSubButton.setVisibility(View.VISIBLE);
+                }
+                else{
+                    subButton.setVisibility(View.VISIBLE);
+                }
+                progressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+
+        subButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDatabase.child("users").child(user.getUid()).child("clubs").child(clubNameToQuery.toLowerCase()).setValue("member");
+                mDatabase.child("clubs").child(clubNameToQuery.toLowerCase()).child("members").child(user.getUid()).setValue("member");
+            }
+        });
+
+        unSubButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDatabase.child("users").child(user.getUid()).child("clubs").child(clubNameToQuery.toLowerCase()).removeValue();
+                mDatabase.child("clubs").child(clubNameToQuery.toLowerCase()).child("members").child(user.getUid()).removeValue();
+            }
+        });
+
     }
 }
 
