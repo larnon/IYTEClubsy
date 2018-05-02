@@ -1,6 +1,6 @@
 package com.example.tempest.iyteclubsy;
 
-import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -18,22 +18,22 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.*;
 
-public class SignupActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     private EditText inputEmail, inputPassword1, inputPassword2;
-    private Button btnSignIn, btnSignUp, btnResetPassword;
+    private Button registerButton;
     private ProgressBar progressBar;
     private FirebaseAuth auth;
     private DatabaseReference mDatabase;
 
     private void writeNewUser(String userId) {
         mDatabase.child("users").child(userId).setValue("user");
-    };
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.activity_register);
 
         // Get Database reference
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -41,45 +41,36 @@ public class SignupActivity extends AppCompatActivity {
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
 
-        btnSignIn = (Button) findViewById(R.id.sign_in_button);
-        btnSignUp = (Button) findViewById(R.id.sign_up_button);
+        registerButton = (Button) findViewById(R.id.sign_up_button);
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword1 = (EditText) findViewById(R.id.password1);
         inputPassword2 = (EditText) findViewById(R.id.password2);
+
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        btnResetPassword = (Button) findViewById(R.id.btn_reset_password);
+        progressBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
 
 
-
-        btnResetPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(SignupActivity.this, ResetPasswordActivity.class));
-            }
-        });
-
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
+        registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String email = inputEmail.getText().toString().trim();
+                String domain = email.substring(email.indexOf("@") + 1);
                 String password1 = inputPassword1.getText().toString().trim();
                 String password2 = inputPassword2.getText().toString().trim();
 
-                if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                if (!TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    Toast.makeText(getApplicationContext(), "Enter E-Mail address!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(password1) || TextUtils.isEmpty(password2)) {
                     Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (!domain.equals("std.iyte.edu.tr") || !domain.equals("iyte.edu.tr")) {
+                    Toast.makeText(getApplicationContext(), "Enter IYTE E-Mail address!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -93,29 +84,30 @@ public class SignupActivity extends AppCompatActivity {
                     return;
                 }
 
+
+
                 progressBar.setVisibility(View.VISIBLE);
                 //create user
                 auth.createUserWithEmailAndPassword(email, password1)
-                        .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
+                        .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                Toast.makeText(SignupActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+
                                 progressBar.setVisibility(View.GONE);
                                 // If sign in fails, display a message to the user. If sign in succeeds
                                 // the auth state listener will be notified and logic to handle the
                                 // signed in user can be handled in the listener.
                                 if (!task.isSuccessful()) {
-                                    Toast.makeText(SignupActivity.this, "Authentication failed." + task.getException(),
-                                            Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RegisterActivity.this, "Registration failed.", Toast.LENGTH_SHORT).show();
                                 } else {
                                     FirebaseUser user = auth.getCurrentUser();
                                     user.sendEmailVerification();
                                     writeNewUser(user.getUid());
+                                    Toast.makeText(RegisterActivity.this, "Verification E-Mail is sent!", Toast.LENGTH_SHORT).show();
                                     finish();
                                 }
                             }
                         });
-
             }
         });
     }

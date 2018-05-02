@@ -1,5 +1,6 @@
 package com.example.tempest.iyteclubsy;
 
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class ResetPasswordActivity extends AppCompatActivity {
 
     private EditText inputEmail;
-    private Button btnReset, btnBack;
+    private Button btnReset;
     private FirebaseAuth auth;
     private ProgressBar progressBar;
 
@@ -28,17 +29,10 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
         inputEmail = (EditText) findViewById(R.id.email);
         btnReset = (Button) findViewById(R.id.btn_reset_password);
-        btnBack = (Button) findViewById(R.id.btn_back);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
 
         auth = FirebaseAuth.getInstance();
-
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override

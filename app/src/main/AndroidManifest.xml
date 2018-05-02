@@ -13,13 +13,14 @@
         android:allowBackup="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
+            android:label="IYTE Clubsy">
+            <intent-filter android:label="@string/app_name">
+
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -31,16 +32,14 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
-            android:label="IYTE Clubsy"
+            android:label="Main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SignupActivity"
-            android:label="Signup Activity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".RegisterActivity"
+            android:label="Register to IYTE Clubsy" />
         <activity
             android:name=".ResetPasswordActivity"
-            android:label="@string/title_activity_reset_password"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="Reset your Password" />
         <activity
             android:name=".ClubListActivity"
             android:label="Clubs"
