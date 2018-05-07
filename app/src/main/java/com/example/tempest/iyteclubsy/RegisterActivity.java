@@ -59,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String password1 = inputPassword1.getText().toString().trim();
                 String password2 = inputPassword2.getText().toString().trim();
 
-                if (!TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                if (TextUtils.isEmpty(email) || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     Toast.makeText(getApplicationContext(), "Enter E-Mail address!", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -69,10 +69,20 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (!domain.equals("std.iyte.edu.tr") || !domain.equals("iyte.edu.tr")) {
-                    Toast.makeText(getApplicationContext(), "Enter IYTE E-Mail address!", Toast.LENGTH_SHORT).show();
-                    return;
+                if (!domain.equals("std.iyte.edu.tr")) {
+                    if (!domain.equals("iyte.edu.tr")) {
+                        Toast.makeText(getApplicationContext(), "Enter IYTE E-Mail address!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
+
+                if (!domain.equals("iyte.edu.tr")) {
+                    if (!domain.equals("std.iyte.edu.tr")) {
+                        Toast.makeText(getApplicationContext(), "Enter IYTE E-Mail address!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+
 
                 if (password1.length() < 6 || password2.length() < 6) {
                     Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();

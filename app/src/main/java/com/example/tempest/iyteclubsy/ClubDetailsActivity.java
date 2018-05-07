@@ -25,6 +25,8 @@ public class ClubDetailsActivity extends AppCompatActivity {
     private TextView clubDesc;
     private Button subButton;
     private Button unSubButton;
+    private Button createEventButton;
+    private Button createAnnouncementButton;
     private ProgressBar progressBar;
 
     private DatabaseReference mDatabase;
@@ -94,6 +96,8 @@ public class ClubDetailsActivity extends AppCompatActivity {
         clubName = (TextView) findViewById(R.id.clubName);
         subButton = (Button) findViewById(R.id.subButton);
         unSubButton = (Button) findViewById(R.id.unSubButton);
+        createEventButton = (Button) findViewById(R.id.createEvent);
+        createAnnouncementButton = (Button) findViewById(R.id.createAnnouncement);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Club Details");
@@ -178,6 +182,8 @@ public class ClubDetailsActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        auth.addAuthStateListener(authListener);
+
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         Query query2 = mDatabase.child("users").child(user.getUid()).child("clubs");
@@ -189,6 +195,14 @@ public class ClubDetailsActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 if (dataSnapshot.hasChild(clubNameToQuery.toLowerCase())) {
                     unSubButton.setVisibility(View.VISIBLE);
+                    if (dataSnapshot.child(clubNameToQuery.toLowerCase()).getValue().toString().equals("admin")) {
+                        createEventButton.setVisibility(View.VISIBLE);
+                        createAnnouncementButton.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        createEventButton.setVisibility(View.GONE);
+                        createAnnouncementButton.setVisibility(View.GONE);
+                    }
                 }
                 else{
                     subButton.setVisibility(View.VISIBLE);
@@ -218,6 +232,43 @@ public class ClubDetailsActivity extends AppCompatActivity {
             }
         });
 
+        createEventButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ClubDetailsActivity.this, CreateClubActionActivity.class);
+                String actionType = "event";
+                intent.putExtra("actionType", actionType);
+                intent.putExtra("clubName", clubNameToQuery.toLowerCase());
+                startActivity(intent);
+            }
+        });
+
+        createAnnouncementButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ClubDetailsActivity.this, CreateClubActionActivity.class);
+                String actionType = "announcement";
+                intent.putExtra("actionType", actionType);
+                intent.putExtra("clubName", clubNameToQuery.toLowerCase());
+                startActivity(intent);
+            }
+        });
+
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (authListener != null) {
+            auth.removeAuthStateListener(authListener);
+        }
     }
 }
 

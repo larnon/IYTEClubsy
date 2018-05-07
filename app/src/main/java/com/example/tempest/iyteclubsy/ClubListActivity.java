@@ -63,6 +63,11 @@ public class ClubListActivity extends AppCompatActivity implements AdapterView.O
                 finish();
                 break;
 
+            case R.id.menuProfile:
+                startActivity(new Intent(ClubListActivity.this, ProfileActivity.class));
+                finish();
+                break;
+
             case R.id.menuClubList:
                 break;
 
@@ -165,5 +170,19 @@ public class ClubListActivity extends AppCompatActivity implements AdapterView.O
         startActivity(intent);
     }
 
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        auth.addAuthStateListener(authListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (authListener != null) {
+            auth.removeAuthStateListener(authListener);
+        }
+    }
 
 }

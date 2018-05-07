@@ -18,7 +18,7 @@ class Adapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
     }
 
     override fun getPageTitle(position: Int): CharSequence = when (position) {
-        0 -> "Notifications"
+        0 -> "Announcements"
         1 -> "Events"
         else -> ""
     }
