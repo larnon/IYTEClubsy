@@ -1,5 +1,9 @@
 package com.example.tempest.iyteclubsy;
 
+/**
+ * Created by Bora Gültekin on 30.04.2018.
+ */
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -62,6 +66,7 @@ public class ProfileActivity extends AppCompatActivity {
 
             case R.id.menuLogout:
                 auth.signOut();
+                finish();
                 break;
         }
         return super.onOptionsItemSelected(item);

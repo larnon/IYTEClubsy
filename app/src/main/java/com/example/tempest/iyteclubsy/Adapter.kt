@@ -1,7 +1,7 @@
 package com.example.tempest.iyteclubsy
 
 /**
- * Created by Tempest on 29.04.2018.
+ * Created by Bora Gültekin on 29.04.2018.
  */
 
 

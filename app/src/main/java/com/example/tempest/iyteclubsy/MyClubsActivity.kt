@@ -1,5 +1,9 @@
 package com.example.tempest.iyteclubsy
 
+/**
+ * Created by Bora Gültekin on 16.04.2018.
+ */
+
 import android.content.Intent
 import android.graphics.PorterDuff
 import android.os.Bundle
@@ -68,7 +72,10 @@ class MyClubsActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
             R.id.menuMyClubs -> {
             }
 
-            R.id.menuLogout -> auth!!.signOut()
+            R.id.menuLogout -> {
+                auth!!.signOut()
+                finish()
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -144,6 +151,7 @@ class MyClubsActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         val clubName = clubList[position]
         intent.putExtra("clubName", clubName)
         startActivity(intent)
+        finish();
     }
 
 

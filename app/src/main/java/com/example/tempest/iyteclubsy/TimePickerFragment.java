@@ -8,10 +8,11 @@ import android.text.format.DateFormat;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
- * Created by Tempest on 8.05.2018.
+ * Created by Bora Gültekin on 8.05.2018.
  */
 
 public class TimePickerFragment extends DialogFragment
@@ -27,13 +28,17 @@ public class TimePickerFragment extends DialogFragment
 
 
         // Create a new instance of TimePickerDialog and return it
-        return new TimePickerDialog(getActivity(), this, hour, minute,
-                DateFormat.is24HourFormat(getActivity()));
+        return new TimePickerDialog(getActivity(), this, hour, minute, true);
     }
 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         TextView time = (TextView) getActivity().findViewById(R.id.time);
-        time.setText(Integer.toString(hourOfDay) + ":" + Integer.toString(minute));
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(0, 0, 0, hourOfDay, minute);
+        java.text.DateFormat dateTimeInstance = new SimpleDateFormat("HH:mm");
+        String formattedDate = dateTimeInstance.format(calendar.getTime());
+//        formattedDate = formattedDate.substring(0, formattedDate.length() - 6) + " " + formattedDate.substring(formattedDate.length() - 2, formattedDate.length());
+        time.setText(formattedDate);
     }
 
 }

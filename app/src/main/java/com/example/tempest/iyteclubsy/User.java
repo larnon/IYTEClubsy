@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 /**
- * Created by Tempest on 27.03.2018.
+ * Created by Bora Gültekin on 27.03.2018.
  */
 
 public class User {

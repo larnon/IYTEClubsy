@@ -1,7 +1,7 @@
 package com.example.tempest.iyteclubsy
 
 /**
- * Created by Tempest on 29.04.2018.
+ * Created by Bora Gültekin on 29.04.2018.
  */
 
 import android.content.Intent
@@ -46,7 +46,10 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this@MainActivity, MyClubsActivity::class.java))
             }
 
-            R.id.menuLogout -> auth!!.signOut()
+            R.id.menuLogout -> {
+                auth!!.signOut()
+                finish()
+            }
         }
         return super.onOptionsItemSelected(item)
     }

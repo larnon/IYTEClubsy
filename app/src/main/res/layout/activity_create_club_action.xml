@@ -56,24 +56,37 @@
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputLayout2"
         android:layout_width="match_parent"
-        android:layout_height="256dp"
+        android:layout_height="128dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
+        android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
+
         <EditText
             android:id="@+id/description"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:focusableInTouchMode="true"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
             android:hint="Description"
-            android:imeOptions="actionUnspecified"
             android:inputType="textMultiLine"
-            android:maxLines="1"
-            android:singleLine="false" />
+            android:maxLines="3"
+            android:minLines="2"
+            android:scrollbars="vertical" />
+
+        <!--<EditText-->
+        <!--android:id="@+id/description"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:focusableInTouchMode="true"-->
+        <!--android:hint="Description"-->
+        <!--android:imeOptions="actionUnspecified"-->
+        <!--android:inputType="textMultiLine"-->
+        <!--android:maxLines="1"-->
+        <!--android:singleLine="false" />-->
     </android.support.design.widget.TextInputLayout>
 
     <TextView
@@ -85,6 +98,7 @@
         android:gravity="center"
         android:text="Time:"
         android:textSize="24sp"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
@@ -92,26 +106,111 @@
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="Time"
+        android:text="____"
         android:textSize="24sp"
+        android:visibility="visible"
         app:layout_constraintStart_toEndOf="@+id/timeTitle"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/timePickButton"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:background="@android:drawable/ic_lock_idle_alarm"
         android:backgroundTint="@color/colorPrimary"
         android:onClick="showTimePickerDialog"
+        android:visibility="visible"
         app:layout_constraintStart_toEndOf="@+id/time"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+
+
+    <TextView
+        android:id="@+id/dateTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Date:"
+        android:textSize="24sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timeTitle" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="____"
+        android:textSize="24sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toEndOf="@+id/dateTitle"
+        app:layout_constraintTop_toBottomOf="@+id/time" />
+
+
+    <Button
+        android:id="@+id/datePickButton"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:drawable/ic_menu_today"
+        android:backgroundTint="@color/colorPrimary"
+        android:onClick="showDatePickerDialog"
+        android:visibility="visible"
+        app:layout_constraintStart_toEndOf="@+id/date"
+        app:layout_constraintTop_toBottomOf="@+id/timePickButton" />
+
+
+    <TextView
+        android:id="@+id/placeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Place:"
+        android:textSize="24sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateTitle" />
+
+
+    <TextView
+        android:id="@+id/place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="____"
+        android:textSize="24sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toEndOf="@+id/placeTitle"
+        app:layout_constraintTop_toBottomOf="@+id/date" />
+
+
+    <Button
+        android:id="@+id/placePickButton"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:drawable/ic_menu_mylocation"
+        android:backgroundTint="@color/colorPrimary"
+        android:onClick="showPlacePickerDialog"
+        android:visibility="visible"
+        app:layout_constraintStart_toEndOf="@+id/place"
+        app:layout_constraintTop_toBottomOf="@+id/datePickButton" />
 
 
     <Button
@@ -129,7 +228,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/place" />
 
 
     <ProgressBar

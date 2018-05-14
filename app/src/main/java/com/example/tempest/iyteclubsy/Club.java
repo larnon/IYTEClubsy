@@ -5,7 +5,7 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.ArrayList;
 
 /**
- * Created by Tempest on 27.03.2018.
+ * Created by Bora Gültekin on 27.03.2018.
  */
 
 public class Club {

@@ -1,5 +1,9 @@
 package com.example.tempest.iyteclubsy;
 
+/**
+ * Created by Bora Gültekin on 15.04.2018.
+ */
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -78,6 +82,7 @@ public class ClubListActivity extends AppCompatActivity implements AdapterView.O
 
             case R.id.menuLogout:
                 auth.signOut();
+                finish();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -168,6 +173,7 @@ public class ClubListActivity extends AppCompatActivity implements AdapterView.O
         intent.putExtra("clubName", clubName);
 
         startActivity(intent);
+        finish();
     }
 
 

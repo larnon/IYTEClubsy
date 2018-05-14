@@ -1,44 +1,77 @@
 package com.example.tempest.iyteclubsy;
 
 /**
- * Created by Tempest on 30.04.2018.
+ * Created by Bora Gültekin on 30.04.2018.
  */
 
 public class ClubAction {
+    private String actionType;
+    private String subject;
     private String description;
-    private String finalDate;
-    private String startDate;
-    private String topic;
+    private String eventTime;
+    private String eventDate;
+    private String creationDate;
+    private String latLng;
+
+    public ClubAction(String actionType, String subject, String description, String eventTime, String eventDate, String creationDate, String latLng) {
+        this.actionType = actionType;
+        this.subject = subject;
+        this.description = description;
+        this.eventTime = eventTime;
+        this.eventDate = eventDate;
+        this.creationDate = creationDate;
+        this.latLng = latLng;
+    }
+
+    public String getActionType() {
+        return actionType;
+    }
+    public void setActionType(String actionType) {
+        this.actionType = actionType;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
 
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public String getFinalDate() {
-        return finalDate;
+    public String getEventTime() {
+        return eventTime;
+    }
+    public void setEventTime(String eventTime) {
+        this.eventTime = eventTime;
     }
 
-    public void setFinalDate(String finalDate) {
-        this.finalDate = finalDate;
+    public String getEventDate() {
+        return eventDate;
+    }
+    public void setEventDate(String eventDate) {
+        this.eventDate = eventDate;
     }
 
-    public String getStartDate() {
-        return startDate;
+    public String getCreationDate() {
+        return creationDate;
+    }
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    public String getLatLng() {
+        return latLng;
+    }
+    public void setLatLng(String latLng) {
+        this.latLng = latLng;
     }
 
-    public String getTopic() {
-        return topic;
-    }
 
-    public void setTopic(String topic) {
-        this.topic = topic;
-    }
+
 }

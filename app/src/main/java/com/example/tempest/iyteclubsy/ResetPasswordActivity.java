@@ -1,5 +1,9 @@
 package com.example.tempest.iyteclubsy;
 
+/**
+ * Created by Bora Gültekin on 18.03.2018.
+ */
+
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
