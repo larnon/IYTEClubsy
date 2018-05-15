@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.*;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class ClubDetailsActivity extends AppCompatActivity {
 
@@ -129,8 +130,6 @@ public class ClubDetailsActivity extends AppCompatActivity {
 
         Query query = mDatabase.child("clubs");
         query.orderByKey().addChildEventListener(new ChildEventListener() {
-//            int counter = -1;
-//            int position = intent.getIntExtra("position", 0);
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 progressBar.setVisibility(View.VISIBLE);
@@ -141,15 +140,6 @@ public class ClubDetailsActivity extends AppCompatActivity {
                     clubName.setText(name);
                     clubDesc.setText(desc);
                 }
-
-//                counter++;
-//                if(counter == position){
-//                    System.out.println(dataSnapshot.getKey());
-//                    String name = dataSnapshot.getKey().substring(0, 1).toUpperCase() + dataSnapshot.getKey().substring(1);
-//                    String desc = dataSnapshot.child("description").getValue().toString();
-//                    clubName.setText(name);
-//                    clubDesc.setText(desc);
-//                }
 
                 progressBar.setVisibility(View.GONE);
             }
@@ -211,6 +201,8 @@ public class ClubDetailsActivity extends AppCompatActivity {
                 }
                 else{
                     subButton.setVisibility(View.VISIBLE);
+                    createEventButton.setVisibility(View.GONE);
+                    createAnnouncementButton.setVisibility(View.GONE);
                 }
                 progressBar.setVisibility(View.GONE);
             }
@@ -226,6 +218,7 @@ public class ClubDetailsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 mDatabase.child("users").child(user.getUid()).child("clubs").child(clubNameToQuery.toLowerCase()).setValue("member");
                 mDatabase.child("clubs").child(clubNameToQuery.toLowerCase()).child("members").child(user.getUid()).setValue("member");
+                FirebaseMessaging.getInstance().subscribeToTopic(clubNameToQuery.toLowerCase().trim());
             }
         });
 
@@ -234,6 +227,7 @@ public class ClubDetailsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 mDatabase.child("users").child(user.getUid()).child("clubs").child(clubNameToQuery.toLowerCase()).removeValue();
                 mDatabase.child("clubs").child(clubNameToQuery.toLowerCase()).child("members").child(user.getUid()).removeValue();
+                FirebaseMessaging.getInstance().unsubscribeFromTopic(clubNameToQuery.toLowerCase().trim());
             }
         });
 
