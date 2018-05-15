@@ -96,11 +96,12 @@ class FragmentOne : Fragment() {
                     for (uniqueUserSnapshot in dataSnapshot.children) {
                         if (uniqueUserSnapshot.key.equals("announcements")) {
                             for (snapshot in uniqueUserSnapshot.children) {
+                                val clubName = snapshot.child("clubName").value.toString()
                                 val actionType = "announcement"
                                 val subject = snapshot.key.toString()
                                 val description = snapshot.child("description").value.toString()
                                 val creationDate = snapshot.child("creationDate").value.toString()
-                                clubActionItems.add(ClubAction(actionType, subject, description, null, null, creationDate, null))
+                                clubActionItems.add(ClubAction(clubName, actionType, subject, description, null, null, creationDate, null))
                                 Collections.sort(clubActionItems, object : Comparator<ClubAction> {
                                     override fun compare(lhs: ClubAction, rhs: ClubAction): Int {
                                         // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending

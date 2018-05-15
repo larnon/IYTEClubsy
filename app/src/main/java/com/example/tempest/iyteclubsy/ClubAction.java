@@ -5,6 +5,8 @@ package com.example.tempest.iyteclubsy;
  */
 
 public class ClubAction {
+
+    private String clubName;
     private String actionType;
     private String subject;
     private String description;
@@ -13,7 +15,8 @@ public class ClubAction {
     private String creationDate;
     private String latLng;
 
-    public ClubAction(String actionType, String subject, String description, String eventTime, String eventDate, String creationDate, String latLng) {
+    public ClubAction(String clubName, String actionType, String subject, String description, String eventTime, String eventDate, String creationDate, String latLng) {
+        this.clubName = clubName;
         this.actionType = actionType;
         this.subject = subject;
         this.description = description;
@@ -21,6 +24,13 @@ public class ClubAction {
         this.eventDate = eventDate;
         this.creationDate = creationDate;
         this.latLng = latLng;
+    }
+
+    public String getClubName() {
+        return clubName;
+    }
+    public void setClubName(String clubName) {
+        this.clubName = clubName;
     }
 
     public String getActionType() {

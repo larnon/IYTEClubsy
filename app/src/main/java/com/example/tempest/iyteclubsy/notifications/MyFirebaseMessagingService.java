@@ -18,8 +18,6 @@ import com.example.tempest.iyteclubsy.R;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
-    private static final String NOTIFICATION_ID_EXTRA = "notificationId";
-    private static final String IMAGE_URL_EXTRA = "imageUrl";
     private static final String ADMIN_CHANNEL_ID ="admin_channel";
     private NotificationManager notificationManager;
 

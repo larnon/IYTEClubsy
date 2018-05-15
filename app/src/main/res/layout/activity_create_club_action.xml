@@ -106,12 +106,14 @@
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="____"
         android:textSize="24sp"
         android:visibility="visible"
+        app:layout_constraintEnd_toStartOf="@+id/timePickButton"
         app:layout_constraintStart_toEndOf="@+id/timeTitle"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
@@ -120,13 +122,13 @@
         android:id="@+id/timePickButton"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginTop="8dp"
         android:background="@android:drawable/ic_lock_idle_alarm"
         android:backgroundTint="@color/colorPrimary"
         android:onClick="showTimePickerDialog"
         android:visibility="visible"
-        app:layout_constraintStart_toEndOf="@+id/time"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
 
@@ -147,12 +149,14 @@
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="____"
         android:textSize="24sp"
         android:visibility="visible"
+        app:layout_constraintEnd_toStartOf="@+id/datePickButton"
         app:layout_constraintStart_toEndOf="@+id/dateTitle"
         app:layout_constraintTop_toBottomOf="@+id/time" />
 
@@ -161,13 +165,13 @@
         android:id="@+id/datePickButton"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginTop="16dp"
         android:background="@android:drawable/ic_menu_today"
         android:backgroundTint="@color/colorPrimary"
         android:onClick="showDatePickerDialog"
         android:visibility="visible"
-        app:layout_constraintStart_toEndOf="@+id/date"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timePickButton" />
 
 
@@ -187,14 +191,16 @@
 
     <TextView
         android:id="@+id/place"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="____"
         android:textSize="24sp"
         android:visibility="visible"
+        app:layout_constraintEnd_toStartOf="@+id/placePickButton"
         app:layout_constraintStart_toEndOf="@+id/placeTitle"
         app:layout_constraintTop_toBottomOf="@+id/date" />
 
@@ -203,13 +209,13 @@
         android:id="@+id/placePickButton"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginTop="16dp"
         android:background="@android:drawable/ic_menu_mylocation"
         android:backgroundTint="@color/colorPrimary"
         android:onClick="showPlacePickerDialog"
         android:visibility="visible"
-        app:layout_constraintStart_toEndOf="@+id/place"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/datePickButton" />
 
 

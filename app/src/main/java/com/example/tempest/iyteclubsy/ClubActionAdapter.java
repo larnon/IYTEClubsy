@@ -19,6 +19,7 @@ public class ClubActionAdapter extends ArrayAdapter<ClubAction>{
 
     // View lookup cache
     private static class ViewHolder {
+        TextView clubName;
         TextView subject;
         TextView description;
         TextView date;
@@ -43,6 +44,7 @@ public class ClubActionAdapter extends ArrayAdapter<ClubAction>{
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.club_action_item, parent, false);
+            viewHolder.clubName = (TextView) convertView.findViewById(R.id.clubName);
             viewHolder.subject = (TextView) convertView.findViewById(R.id.subject);
             viewHolder.description = (TextView) convertView.findViewById(R.id.description);
             viewHolder.date = (TextView) convertView.findViewById(R.id.date);
@@ -52,8 +54,13 @@ public class ClubActionAdapter extends ArrayAdapter<ClubAction>{
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.subject.setText(dataModel.getSubject());
-        viewHolder.description.setText(dataModel.getDescription());
+        String clbnm = "Club: " + dataModel.getClubName().toUpperCase();
+        String sbjct = "Subject: " + dataModel.getSubject();
+        String dscrptn = "Description: " + dataModel.getDescription();
+
+        viewHolder.clubName.setText(clbnm);
+        viewHolder.subject.setText(sbjct);
+        viewHolder.description.setText(dscrptn);
         viewHolder.date.setText(dataModel.getEventDate());
         viewHolder.time.setText(dataModel.getEventTime());
 

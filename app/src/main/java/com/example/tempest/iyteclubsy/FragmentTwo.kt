@@ -123,6 +123,7 @@ class FragmentTwo : Fragment(), AdapterView.OnItemClickListener {
                     for (uniqueUserSnapshot in dataSnapshot.children) {
                         if (uniqueUserSnapshot.key.equals("events")){
                             for (snapshot in uniqueUserSnapshot.children) {
+                                val clubName = snapshot.child("clubName").value.toString()
                                 val actionType = "event"
                                 val subject = snapshot.key.toString()
                                 val description = snapshot.child("description").value.toString()
@@ -130,7 +131,7 @@ class FragmentTwo : Fragment(), AdapterView.OnItemClickListener {
                                 val eventDate = snapshot.child("eventDate").value.toString()
                                 val creationDate = snapshot.child("creationDate").value.toString()
                                 val latLng = snapshot.child("eventPlace").value.toString()
-                                clubActionItems.add(ClubAction(actionType, subject, description, eventTime, eventDate, creationDate, latLng))
+                                clubActionItems.add(ClubAction(clubName, actionType, subject, description, eventTime, eventDate, creationDate, latLng))
                                 Collections.sort(clubActionItems , object : Comparator<ClubAction> {
                                     override fun compare(lhs: ClubAction, rhs: ClubAction): Int {
                                         // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending

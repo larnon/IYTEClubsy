@@ -190,6 +190,7 @@ public class CreateClubActionActivity extends AppCompatActivity {
 
                     mDatabase.child("clubs").child(clubName).child(actionType + "s").child(subjectString).child("description").setValue(descriptionString);
                     mDatabase.child("clubs").child(clubName).child(actionType + "s").child(subjectString).child("creationDate").setValue(ServerValue.TIMESTAMP);
+                    mDatabase.child("clubs").child(clubName).child(actionType + "s").child(subjectString).child("clubName").setValue(clubName);
                 }
                 else if(actionType.equals("event")) {
                     String subjectString = subject.getText().toString().trim();
@@ -213,6 +214,7 @@ public class CreateClubActionActivity extends AppCompatActivity {
 //                        return;
 //                    }
 
+                    mDatabase.child("clubs").child(clubName).child(actionType + "s").child(subjectString).child("clubName").setValue(clubName);
                     mDatabase.child("clubs").child(clubName).child(actionType + "s").child(subjectString).child("description").setValue(descriptionString);
                     mDatabase.child("clubs").child(clubName).child(actionType + "s").child(subjectString).child("creationDate").setValue(ServerValue.TIMESTAMP);
                     mDatabase.child("clubs").child(clubName).child(actionType + "s").child(subjectString).child("eventTime").setValue(timeString);
@@ -274,7 +276,7 @@ public class CreateClubActionActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 Place selectedPlace = PlacePicker.getPlace(data, this);
                 latLng = selectedPlace.getLatLng().toString();
-                place.setText(selectedPlace.getAddress().toString());
+                place.setText(selectedPlace.getName().toString());
             }
         }
     }
