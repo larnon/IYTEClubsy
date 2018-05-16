@@ -215,12 +215,13 @@ public class CreateClubActionActivity extends AppCompatActivity {
 //                        return;
 //                    }
 
-                    mDatabase.child("clubs").child(clubName).child(actionType + "s").child(subjectString).child("clubName").setValue(clubName);
                     mDatabase.child("clubs").child(clubName).child(actionType + "s").child(subjectString).child("description").setValue(descriptionString);
+                    mDatabase.child("clubs").child(clubName).child(actionType + "s").child(subjectString).child("clubName").setValue(clubName);
                     mDatabase.child("clubs").child(clubName).child(actionType + "s").child(subjectString).child("creationDate").setValue(ServerValue.TIMESTAMP);
                     mDatabase.child("clubs").child(clubName).child(actionType + "s").child(subjectString).child("eventTime").setValue(timeString);
                     mDatabase.child("clubs").child(clubName).child(actionType + "s").child(subjectString).child("eventDate").setValue(dateString);
                     mDatabase.child("clubs").child(clubName).child(actionType + "s").child(subjectString).child("eventPlace").setValue(latLng);
+
                 }
 
 

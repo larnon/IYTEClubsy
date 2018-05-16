@@ -34,7 +34,7 @@ class FragmentTwo : Fragment(), AdapterView.OnItemClickListener {
 
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        rootView = inflater!!.inflate(R.layout.fragment_two, container, false)
+        rootView = inflater!!.inflate(R.layout.fragment_one, container, false)
 
         progressBar = rootView!!.findViewById<View>(R.id.progressBar) as ProgressBar
         progressBar!!.indeterminateDrawable.setColorFilter(resources.getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN)
