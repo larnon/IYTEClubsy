@@ -200,6 +200,7 @@ public class CreateClubActionActivity extends AppCompatActivity {
                     String placeString = place.getText().toString().trim();
                     if (TextUtils.isEmpty(subjectString) || TextUtils.isEmpty(descriptionString) || TextUtils.isEmpty(timeString) || TextUtils.isEmpty(dateString) || TextUtils.isEmpty(placeString)) {
                         Toast.makeText(getApplicationContext(), "Fill in the details!", Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.GONE);
                         return;
                     }
 
